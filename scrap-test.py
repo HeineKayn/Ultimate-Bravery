@@ -35,21 +35,8 @@ def Scrap(url):  # Renvoie le code html d'une page
 
 #####################
 
-base_url = 'https://www.leagueofgraphs.com/fr/champions/builds'
+base_url = "https://u.gg/lol/champions/aatrox/runes-table"
+scrapped = Scrap(base_url)
+scrapped = scrapped.find("div",{"class":"runes-table-container"})
 
-roles = ["top","jungle","middle","adc","support"]
-champ_table = Scrap(base_url).find("table",{"class":"data_table with_sortable_column"})
-champ_list = champ_table.findAll("tr") # Récolte tous les noms de champion
-champ_name_list = []
-
-for champ in champ_list : 
-	try : 
-		champ_url = champ.a["href"]
-		if champ_url != "/fr/champions/builds/by-champion-name" :
-			champ_name = champ_url[21:]
-			champ_name_list.append(champ_name)
-	except :
-		pass
-
-champ_name_list.sort()
-print(champ_name_list)
+print(scrapped)

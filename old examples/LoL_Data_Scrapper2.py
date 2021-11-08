@@ -330,7 +330,7 @@ for task_count, champ_name in enumerate(champ_name_list) :
 			# options.add_argument('--headless')
 
 			driver = webdriver.Chrome(PATH, options=options) # On utilise Selenium parce que la page utilise du javascript et qu'il faut attendre qu'elle charge
-			champ_keystone_url = "https://u.gg/lol/champions/" + champ_name + "/runes"
+			champ_keystone_url = "https://u.gg/lol/champions/" + champ_name + "/runes-table"
 
 			driver.get(champ_keystone_url)
 			WebDriverWait(driver, 10).until( # Attends que la page se soit chargée et qu'on puisse trouver un bout du code
