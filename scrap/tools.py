@@ -35,11 +35,14 @@ def putJson(file,data):
 
 def getJson(file):
 	with open(file) as json_file:
-   		data = json.load(json_file)
+		data = json.load(json_file)
+	return data
 
 # ==================== Variables
 
-leagueOfGraphs_url = 'https://www.leagueofgraphs.com'
 roles = ["top","jungle","middle","adc","support"]
+
+leagueOfGraphs_url = 'https://www.leagueofgraphs.com'
+leagueFandom_url   = 'https://leagueoflegends.fandom.com'
 
 championFile = "champions.txt"
