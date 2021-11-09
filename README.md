@@ -41,6 +41,8 @@ wip
 ### Displayer
 wip
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- DATABASE STRUCTURE -->
 ## Database Structure
 
