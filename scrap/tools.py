@@ -38,6 +38,26 @@ def getJson(file):
 		data = json.load(json_file)
 	return data
 
+def complexItemResolver(itemName):
+	itemName = itemName.capitalize()
+	if "Hydra" in itemName : # On fusionne les 2 hydres
+		itemName = "Hydra"
+	if "Scythe" in itemName or "Bulwark" in itemName or "Pauldron" in itemName or "Shard" in itemName :
+		itemName = "Support"
+	if "Dominik" in itemName or "Mortal" in itemName : 
+		itemName = "Whisper"
+	if "Silvermere" in itemName or "Scimitar" in itemName : 
+		itemName = "Quicksilver"
+	if "Sterak" in itemName or "Malmortius" in itemName:
+		itemName = "Lifeline"
+	if "Infinity" in itemName or "Guinsoo" in itemName:
+		itemName = "Crit"
+	if "Muramana" in itemName or "Manamune" in itemName or "Seraph" in itemName or "Archangel" in itemName:
+		itemName = "Mana"
+	if "Hurricane" in itemName :
+		break
+	return itemName
+
 # ==================== Variables
 
 roles = ["top","jungle","middle","adc","support"]

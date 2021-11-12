@@ -33,4 +33,5 @@ if __name__ == "__main__" :
 	res.sort()
 
 	# putJson(championFile,res)
-	print(len(res),res)
+	print(res)
+	# print(len(res),res)

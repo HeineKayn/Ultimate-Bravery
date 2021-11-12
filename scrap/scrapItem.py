@@ -17,6 +17,8 @@ def run(cur=None):
 			name = name.replace(" item.png","")
 			icon = item_container["src"]
 
+			name = complexItemResolver(itemName)
+
 			item_list += [name]
 			# item_list += [{"name":name,"icon":icon}]
 
