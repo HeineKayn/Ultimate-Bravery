@@ -1,5 +1,5 @@
+from manager import Manage
 from setter import Set
-from getter import Get
 
 from dotenv import load_dotenv
 import os 
@@ -24,18 +24,35 @@ class BDD():
 		  		port=port,
 		  		database="ub"
 			)
-			print("Connecté à la BDD")
+			print("Connecté à la BDD de {} sur le port {}".format(host,port))
 
 		except mariadb.Error as e:
 			print(f"Error connecting to MariaDB Platform: {e}")
 			exit()
 
+		self.conn = conn
 		self.cur = conn.cursor()
-		self.init = Init(self.cur)
-		self.get = Get(self.cur)
-		self.set = Set(self.cur)
+		self.manage = Manage(self)
+		self.set = Set(self)
 
-bdd = BDD()
-bdd.cur.execute("SHOW TABLES")
-for x in bdd.cur :
-	print(x)
+	def get(self,request,args):
+		return self.cur.execute(request,args)
+
+	# def commit(self,func):
+	# 	def wrap(*args, **kwargs):
+	# 		result = func(*args, **kwargs)
+	# 		self.conn.commit()
+	# 		return result
+	# 	return wrap
+
+if __name__ == "__main__" :
+	
+	bdd = BDD()
+	# bdd.manage.renewTables()
+
+	# bdd.set.addChampion("Garen")
+	# bdd.conn.commit()
+
+	bdd.cur.execute("SELECT * FROM Champion")
+	for x in bdd.cur :
+		print(x)

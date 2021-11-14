@@ -40,7 +40,26 @@ def ScrapBetter(url):  # Renvoie le code html d'une page
 	page_soup = soup(req.text, "html.parser")
 	return page_soup
 
-base_url = "https://www.leagueofgraphs.com/champions/skills-orders/viktor/jungle"
-scrapped = ScrapBetter(base_url)
-scrapped = scrapped.find("div",{"id":"mainContent"})
-print(scrapped)
+# base_url = "https://www.leagueofgraphs.com/champions/skills-orders/viktor/jungle"
+# scrapped = ScrapBetter(base_url)
+# scrapped = scrapped.find("div",{"id":"mainContent"})
+# print(scrapped)
+
+
+class a():
+
+	def commit(self,func):
+		def wrap(*args, **kwargs):
+			result = func(*args, **kwargs)
+			print("commiting")
+			return result
+		return wrap
+  
+aaa = a()
+
+@aaa.commit
+def countdown(n):
+	print(n)
+  
+countdown(5)
+countdown(1000)
