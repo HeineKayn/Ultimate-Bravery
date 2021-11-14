@@ -17,11 +17,14 @@ def run(cur=None):
 			name = name.replace(" item.png","")
 			icon = item_container["src"]
 
-			name = complexItemResolver(itemName)
+			name = complexItemResolver(name)
+			if name == "" :
+				break
 
 			item_list += [name]
 			# item_list += [{"name":name,"icon":icon}]
 
+			# MODIFIER METTRE DANS UNE SEULE TABLE
 			if cur :
 				if key=="bottes":
 					Q_Botte = "INSERT INTO Botte (nom) VALUES (%s)"

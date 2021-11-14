@@ -9,14 +9,17 @@ from bs4 import BeautifulSoup as soup
 # ==================== Fonctions récurrentes
 
 def Scrap(url):  # Renvoie le code html d'une page 
-
 	req = Request(url, headers = {"User-Agent": "Mozilla/5.0"})
 	uClient = uReq(req)
 	page_html = uClient.read()
 	uClient.close()
-
 	page_soup = soup(page_html, "html.parser")
+	return page_soup
 
+# Censé éviter les erreurs
+def ScrapBetter(url):  # Renvoie le code html d'une page 
+	req = requests.get(url)
+	page_soup = soup(req.text, "html.parser")
 	return page_soup
 
 def Proem(txt):  # Renvoie le caractère le plus récurrent d'un string
@@ -55,7 +58,7 @@ def complexItemResolver(itemName):
 	if "Muramana" in itemName or "Manamune" in itemName or "Seraph" in itemName or "Archangel" in itemName:
 		itemName = "Mana"
 	if "Hurricane" in itemName :
-		break
+		itemName = ""
 	return itemName
 
 # ==================== Variables
