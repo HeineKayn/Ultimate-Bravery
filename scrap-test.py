@@ -61,5 +61,11 @@ aaa = a()
 def countdown(n):
 	print(n)
   
-countdown(5)
-countdown(1000)
+# countdown(5)
+# countdown(1000)
+
+def poulet(dinde,*args):
+	print(dinde)
+	print(len(args))
+
+poulet(1,2,3,4,5)

@@ -54,6 +54,6 @@ if __name__ == "__main__" :
 	# x = bdd.get.numberOf("Champion")
 	# print(x)
 	
-	bdd.cur.execute("DESCRIBE Champion")
+	bdd.cur.execute("SELECT * FROM Item")
 	for x in bdd.cur :
 		print(x)

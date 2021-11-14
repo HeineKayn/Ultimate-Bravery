@@ -12,4 +12,19 @@ class Get():
 		self.cur.execute("SELECT nom FROM Champion")
 		res = self.cur.fetchall()
 		res = [x[0] for x in res]
+		res.sort()
+		return(res)
+
+	def items(self):
+		self.cur.execute("SELECT nom FROM Item")
+		res = self.cur.fetchall()
+		res = [x[0] for x in res]
+		res.sort()
+		return(res)
+
+	def lanes(self):
+		self.cur.execute("SELECT nom FROM Lane")
+		res = self.cur.fetchall()
+		res = [x[0] for x in res]
+		res.sort()
 		return(res)

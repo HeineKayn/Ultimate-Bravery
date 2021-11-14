@@ -66,7 +66,7 @@ class Set():
 									KeystoneID = VALUES(KeystoneID)"""
 		self.cur.execute(Q_Keystone_Update,(winrate,pickrate,champ_name,lane_name,keystone_name,numero))
 
-	def itemSkillOrder_Update(self,champ_name,spell_order):
+	def intermSkillOrder_Update(self,champ_name,spell_order):
 		Q_Skill_Update = """INSERT INTO SkillOrder (ordre, championID) 
 							VALUES (%s,
 								(SELECT ID FROM Champion WHERE nom = %s)) 

@@ -1,6 +1,6 @@
 from .tools import * 
 
-def run(champ_name,cur=None):
+def run(champ_name,bdd=None):
 	champ_skills_url = leagueOfGraphs_url + "/champions/skills-orders/{}".format(champ_name)
 
 	champ_skills_page_content = Scrap(champ_skills_url).find("div",{"id":"mainContent"})
@@ -34,9 +34,8 @@ def run(champ_name,cur=None):
 	if __name__ == "__main__" :
 		print(champ_name,spell_order)
 
-	if cur :
-		Q_Skill_Update = "INSERT INTO SkillOrder (ordre, championID) VALUES (%s,(SELECT ID FROM Champion WHERE nom = %s)) ON DUPLICATE KEY UPDATE ordre = VALUES(ordre), championID = VALUES(championID)"
-		cur.execute(Q_Skill_Update,(spell_order,champ_name))
+	if bdd :
+		bdd.set.intermSkillOrder_Update(champ_name,spell_order)
 
 if __name__ == "__main__" :
 	test_champ_name = "aatrox"

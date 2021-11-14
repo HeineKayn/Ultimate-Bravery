@@ -55,15 +55,18 @@ def complexItemResolver(itemName):
 		itemName = ""
 	return itemName
 
-def loadingBar(current,maximum,task="",overallProgress=""):
-	percentage = round(current/maximum * 100)
+def loadingBar(cur_task,max_task,task,subtask,cur_progress,max_progress):
+	percentage = round(cur_task/max_task * 100)
 	scaler     = 2 
 	space      = 20
 	print("\n"*space)
-	print("({})Loading {} ({}%)...".format(overallProgress, task, percentage))
+	print("({}/{})Loading {} : {} ({}%)...".format(cur_progress,max_progress, task, subtask, percentage))
 	bar = "#"*round(percentage/scaler)
 	bar += "-"*round((100-percentage)/scaler)
 	print(bar)
+
+def laneLoadingBar(lane):
+	print("{}... ok".format(lane))
 
 # ==================== Variables
 
