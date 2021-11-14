@@ -1,6 +1,5 @@
 class Manage():
 	def __init__(self,bdd):
-		self.commit = bdd.commit
 		self.cur = bdd.cur
 
 	def createTables(self):

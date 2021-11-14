@@ -1,4 +1,4 @@
-from tools import * 
+from .tools import * 
 
 def run(champ_name,cur=None):
 	champ_skills_url = leagueOfGraphs_url + "/champions/skills-orders/{}".format(champ_name)

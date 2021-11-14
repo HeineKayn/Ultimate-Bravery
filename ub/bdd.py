@@ -1,5 +1,4 @@
-from manager import Manage
-from setter import Set
+from bddTools import *
 
 from dotenv import load_dotenv
 import os 
@@ -34,9 +33,10 @@ class BDD():
 		self.cur = conn.cursor()
 		self.manage = Manage(self)
 		self.set = Set(self)
+		self.get = Get(self)
 
-	def get(self,request,args):
-		return self.cur.execute(request,args)
+	def request(self,req,args):
+		return self.cur.execute(req,args)
 
 	# def commit(self,func):
 	# 	def wrap(*args, **kwargs):
@@ -45,14 +45,15 @@ class BDD():
 	# 		return result
 	# 	return wrap
 
+	def commit(self):
+		self.conn.commit()
+
 if __name__ == "__main__" :
 	
 	bdd = BDD()
-	# bdd.manage.renewTables()
-
-	# bdd.set.addChampion("Garen")
-	# bdd.conn.commit()
-
-	bdd.cur.execute("SELECT * FROM Champion")
+	# x = bdd.get.numberOf("Champion")
+	# print(x)
+	
+	bdd.cur.execute("DESCRIBE Champion")
 	for x in bdd.cur :
 		print(x)

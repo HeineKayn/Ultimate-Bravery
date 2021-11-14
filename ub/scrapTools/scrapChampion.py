@@ -1,6 +1,6 @@
-from tools import * 
+from .tools import * 
 
-def run(cur=None):
+def init(bdd=None):
 	base_url = leagueOfGraphs_url
 	list_url_full = base_url + "/fr/champions/builds"
 
@@ -19,9 +19,8 @@ def run(cur=None):
 				champ_name = champ_url[21:]
 				champ_name_list.append(champ_name)
 
-				# Si on a donné le curseur de la BDD c'est qu'on veut rajouter à la BDD 
-				if cur : 
-					cur.execute("INSERT INTO Champion (nom) VALUES (%s)",(champ_name,))
+				if bdd : 
+					bdd.set.addChampion(champ_name)
 
 		except : 
 			pass
@@ -31,7 +30,4 @@ def run(cur=None):
 if __name__ == "__main__" :
 	res = run()
 	res.sort()
-
-	# putJson(championFile,res)
-	print(res)
-	# print(len(res),res)
+	print(len(res),res)

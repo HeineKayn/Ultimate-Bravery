@@ -5,17 +5,23 @@ class Set():
 	##########  Ajout dans les tables d'infos 
 
 	def addChampion(self,champ_name):
-		self.cur.execute("INSERT INTO Champion (nom) VALUES (%s)",(champ_name,))
+		Q_Champion = """INSERT INTO Champion (nom) VALUES (%s) 
+						ON DUPLICATE KEY UPDATE nom=nom"""
+		self.cur.execute(Q_Champion,(champ_name,))
 
 	def addLane(self,lane_name):
-		self.cur.execute("INSERT INTO Lane (nom) VALUES (%s)",(lane_name,))
+		Q_Lane = """INSERT INTO Lane (nom) VALUES (%s)
+					ON DUPLICATE KEY UPDATE nom=nom"""
+		self.cur.execute(Q_Lane,(lane_name,))
 
 	def addItem(self,item_name,item_type):
-		Q_Item = "INSERT INTO Item (nom,type) VALUES (%s)"
-		self.cur.execute(Q_Item,(name,item_type))
+		Q_Item = """INSERT INTO Item (nom,type) VALUES (%s,%s)
+					ON DUPLICATE KEY UPDATE nom=nom"""
+		self.cur.execute(Q_Item,(item_name,item_type))
 
 	def addKeystone(self,rune_name,rune_genre,rune_type,numero):
-		Q_Rune = "INSERT INTO Keystone (nom,genre,ligne,type) VALUES (%s,%s,%s,%s)"
+		Q_Rune = """INSERT INTO Keystone (nom,genre,ligne,type) VALUES (%s,%s,%s,%s)
+					ON DUPLICATE KEY UPDATE nom=nom"""
 		self.cur.execute(Q_Rune,(rune_name,rune_genre,rune_type,numero))	
 
 	##########  Update dans les tables d'intermédiaire

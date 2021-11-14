@@ -16,12 +16,6 @@ def Scrap(url):  # Renvoie le code html d'une page
 	page_soup = soup(page_html, "html.parser")
 	return page_soup
 
-# Censé éviter les erreurs
-def ScrapBetter(url):  # Renvoie le code html d'une page 
-	req = requests.get(url)
-	page_soup = soup(req.text, "html.parser")
-	return page_soup
-
 def Proem(txt):  # Renvoie le caractère le plus récurrent d'un string
 	char_dic = {}
 	for char in txt :
@@ -32,14 +26,14 @@ def Proem(txt):  # Renvoie le caractère le plus récurrent d'un string
 	key, value = max(char_dic.items(), key=lambda x:x[1])
 	return(key)
 
-def putJson(file,data):
-	with open(file, 'w') as outfile:
-		json.dump(data, outfile, indent=2)
+# def putJson(file,data):
+# 	with open(file, 'w') as outfile:
+# 		json.dump(data, outfile, indent=2)
 
-def getJson(file):
-	with open(file) as json_file:
-		data = json.load(json_file)
-	return data
+# def getJson(file):
+# 	with open(file) as json_file:
+# 		data = json.load(json_file)
+# 	return data
 
 def complexItemResolver(itemName):
 	itemName = itemName.capitalize()
@@ -60,6 +54,16 @@ def complexItemResolver(itemName):
 	if "Hurricane" in itemName :
 		itemName = ""
 	return itemName
+
+def loadingBar(current,maximum,task="",overallProgress=""):
+	percentage = round(current/maximum * 100)
+	scaler     = 2 
+	space      = 20
+	print("\n"*space)
+	print("({})Loading {} ({}%)...".format(overallProgress, task, percentage))
+	bar = "#"*round(percentage/scaler)
+	bar += "-"*round((100-percentage)/scaler)
+	print(bar)
 
 # ==================== Variables
 

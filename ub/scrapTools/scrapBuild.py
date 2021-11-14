@@ -1,4 +1,4 @@
-from tools import * 
+from .tools import * 
 
 def run(champ_name,lane,cur=None):
 	champ_build_url = leagueOfGraphs_url + "/en/champions/items/{}/{}".format(champ_name,lane)
