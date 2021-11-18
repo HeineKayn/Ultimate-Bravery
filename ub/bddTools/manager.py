@@ -30,6 +30,13 @@ class Manage():
 								type VARCHAR(30), 
 							UNIQUE(nom,arbre,ligne,type))""")
 
+		self.cur.execute("""CREATE TABLE Spell (
+								ID int PRIMARY KEY AUTO_INCREMENT,
+								nom VARCHAR(30),
+								classic INT(1),
+								aram INT(1),
+								img VARCHAR(30)""")
+
 		# ----- INTERMEDIAIRES
 
 		self.cur.execute("""CREATE TABLE SkillOrder (

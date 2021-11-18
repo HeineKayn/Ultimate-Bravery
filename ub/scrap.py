@@ -7,12 +7,14 @@ class Scrapper():
 		self.bdd          = bdd
 		self.cur_progress = 0
 		self.max_progress = 1
+		self.version      = tools.get_latest_version()
 
 	def initInformations(self):
-		scrapChampion.init(self.bdd)
+		scrapChampion.init(self.version,self.bdd)
 		scrapLane.init(self.bdd)
 		scrapItem.init(self.bdd)
-		# scrapRune.init(self.bdd)
+		scrapRune.init(self.version,self.bdd)
+		# scrapSummoners.init()
 		self.bdd.commit()
 
 	def updateX(self,scrapFunc,task):

@@ -72,6 +72,11 @@ def loadingBar(cur_task,max_task,task,subtask,cur_progress,max_progress):
 def laneLoadingBar(lane):
 	print("{}... ok".format(lane))
 
+def get_latest_version():
+	url = "https://ddragon.leagueoflegends.com/api/versions.json"
+	version_list = ScrapJson(url)
+	return version_list[0]
+
 # ==================== Variables
 
 roles = ["top","jungle","middle","adc","support"]

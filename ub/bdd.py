@@ -38,13 +38,6 @@ class BDD():
 	def request(self,req,args):
 		return self.cur.execute(req,args)
 
-	# def commit(self,func):
-	# 	def wrap(*args, **kwargs):
-	# 		result = func(*args, **kwargs)
-	# 		self.conn.commit()
-	# 		return result
-	# 	return wrap
-
 	def commit(self):
 		self.conn.commit()
 

@@ -19,10 +19,15 @@ class Set():
 					ON DUPLICATE KEY UPDATE nom=nom"""
 		self.cur.execute(Q_Item,(item_name,item_type))
 
-	def addKeystone(self,rune_name,rune_genre,rune_type,numero):
-		Q_Rune = """INSERT INTO Keystone (nom,genre,ligne,type) VALUES (%s,%s,%s,%s)
+	def addRune(self,rune_id,rune_name,rune_arbre,rune_ligne,rune_type):
+		Q_Rune = """INSERT INTO Rune (ID,nom,arbre,ligne,type) VALUES (%s,%s,%s,%s)
 					ON DUPLICATE KEY UPDATE nom=nom"""
-		self.cur.execute(Q_Rune,(rune_name,rune_genre,rune_type,numero))	
+		self.cur.execute(Q_Rune,(rune_id,rune_name,rune_arbre,rune_ligne,rune_type))	
+
+	def addSpell(self,spell_name,spell_classic,spell_aram,spell_icon):
+		Q_Champion = """INSERT INTO Spell (nom,classic,aram,icon) VALUES (%s,%s,%s,%s) 
+						ON DUPLICATE KEY UPDATE nom=nom"""
+		self.cur.execute(Q_Champion,(spell_name,spell_classic,spell_aram,spell_icon))
 
 	##########  Update dans les tables d'intermédiaire
 
@@ -52,19 +57,19 @@ class Set():
 								ItemID = VALUES(ItemID)"""
 		self.cur.execute(Q_Item_Update,(winrate,pickrate,champ_name,lane_name,item_name))
 
-	def intermKeystone_Update(self,winrate,pickrate,champ_name,lane_name,keystone_name,numero):
-		Q_Keystone_Update = """	INSERT INTO Interm_Keystone (winrate, pickrate, championID, laneID, keystoneID) 
+	def intermRune_Update(self,winrate,pickrate,champ_name,lane_name,rune_name,numero):
+		Q_Rune_Update = """	INSERT INTO Interm_Rune (winrate, pickrate, championID, laneID, runeID) 
 								VALUES (%s,%s,
 									(SELECT ID FROM Champion WHERE nom = %s),
 									(SELECT ID FROM Lane WHERE nom = %s),
-									(SELECT ID FROM Keystone WHERE nom = %s and ligne = %s)) 
+									(SELECT ID FROM Rune WHERE nom = %s and ligne = %s)) 
 								ON DUPLICATE KEY UPDATE 
 									winrate = VALUES(winrate), 
 									pickrate = VALUES(pickrate), 
 									championID = VALUES(championID), 
 									LaneID = VALUES(LaneID), 
-									KeystoneID = VALUES(KeystoneID)"""
-		self.cur.execute(Q_Keystone_Update,(winrate,pickrate,champ_name,lane_name,keystone_name,numero))
+									RuneID = VALUES(RuneID)"""
+		self.cur.execute(Q_Rune_Update,(winrate,pickrate,champ_name,lane_name,rune_name,numero))
 
 	def intermSkillOrder_Update(self,champ_name,spell_order):
 		Q_Skill_Update = """INSERT INTO SkillOrder (ordre, championID) 

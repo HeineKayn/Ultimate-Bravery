@@ -1,0 +1,31 @@
+from tools import * 
+
+def init(version,bdd=None):
+	spell_list_url = "http://ddragon.leagueoflegends.com/cdn/{}/data/en_US/summoner.json".format(version)
+	# base_img_url   = "https://ddragon.leagueoflegends.com/cdn/11.23.1/img/spell/".format(version)
+
+	spell_json = ScrapJson(spell_list_url)
+	spell_name_list = []
+
+	for spell in spell_json["data"].values():
+		spell_name   = spell["name"]
+		spell_icon   = spell["image"]["full"]
+
+		spell_modes        = spell["modes"]
+		spell_mode_classic = 1 if "CLASSIC" in spell_modes else 0
+		spell_mode_aram    = 1 if "ARAM" in spell_modes    else 0
+
+		spell_name_list.append(spell_name)
+
+		if __name__ == "__main__" :
+			print(spell_name,spell_mode_classic,spell_mode_aram)
+
+		if bdd : 
+			bdd.set.addspell(spell_name,spell_icon,spell_mode_classic,spell_mode_aram)
+
+	return spell_name_list
+
+if __name__ == "__main__" :
+	res = init("11.23.1")
+	res.sort()
+	# print(len(res),res)
