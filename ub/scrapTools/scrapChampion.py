@@ -1,4 +1,4 @@
-from .tools import * 
+from tools import * 
 
 def init(bdd=None):
 	base_url = leagueOfGraphs_url
@@ -28,6 +28,6 @@ def init(bdd=None):
 	return champ_name_list
 
 if __name__ == "__main__" :
-	res = run()
+	res = init()
 	res.sort()
 	print(len(res),res)

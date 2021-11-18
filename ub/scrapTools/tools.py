@@ -16,6 +16,10 @@ def Scrap(url):  # Renvoie le code html d'une page
 	page_soup = soup(page_html, "html.parser")
 	return page_soup
 
+def ScrapJson(url):
+	r = requests.get(url)
+	return json.loads(r.content)
+
 def Proem(txt):  # Renvoie le caractère le plus récurrent d'un string
 	char_dic = {}
 	for char in txt :

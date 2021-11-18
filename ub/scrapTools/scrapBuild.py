@@ -17,6 +17,7 @@ def run(champ_name,lane,existing_items,bdd=None):
 			pickrate = float(bars[0]["data-value"]) * 100
 			winrate = float(bars[1]["data-value"]) * 100
 			name = item.td.img["alt"]
+			icon = item.td.img["src"] # <<<<----- rajouté 
 
 			name = complexItemResolver(name)
 			if name == "" :

@@ -54,6 +54,8 @@ if __name__ == "__main__" :
 	# x = bdd.get.numberOf("Champion")
 	# print(x)
 	
-	bdd.cur.execute("SELECT * FROM Item")
+	# bdd.manage.renewTables()
+
+	bdd.cur.execute("SHOW TABLES")
 	for x in bdd.cur :
 		print(x)
