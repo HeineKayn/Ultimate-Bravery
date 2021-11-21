@@ -8,13 +8,26 @@ class Scrapper():
 		self.cur_progress = 0
 		self.max_progress = 1
 		self.version      = tools.get_latest_version()
+		self.uggversion   = tools.uggversion(self.version)
 
 	def initInformations(self):
+		i=0
+		tools.loadingBar(i,5,"Champion")
 		scrapChampion.init(self.version,self.bdd)
+		i += 1
+		tools.loadingBar(i,5,"Lane")
 		scrapLane.init(self.bdd)
+		i += 1
+		tools.loadingBar(i,5,"Item")
 		scrapItem.init(self.bdd)
+		i += 1
+		tools.loadingBar(i,5,"Rune")
 		scrapRune.init(self.version,self.bdd)
-		# scrapSummoners.init()
+		i += 1
+		tools.loadingBar(i,5,"Summoners")
+		scrapSummoners.init(self.version,self.bdd)
+		i += 1
+		tools.loadingBar(i,5,"Terminé")
 		self.bdd.commit()
 
 	def updateX(self,scrapFunc,task):
@@ -62,7 +75,12 @@ class Scrapper():
 
 	
 scrapper = Scrapper(BDD())
+scrapper.initInformations()
+
 # scrapper.updateX(scrapLane.run,"Lane")
 # scrapper.updateX(scrapSkill.run,"Skill")
-scrapper.updateX(scrapBuild.run,"Build")
+
+# scrapChampion.init(scrapper.version,scrapper.bdd)
+# scrapper.bdd.commit()
+
 # scrapper.updateAll()

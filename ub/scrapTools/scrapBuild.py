@@ -2,7 +2,7 @@ from .tools import *
 
 def run(champ_name,lane,existing_items,bdd=None):
 
-	champ_build_url = leagueOfGraphs_url + "/en/champions/items/{}/{}".format(champ_name,lane)
+	champ_build_url = "https://www.leagueofgraphs.com/en/champions/items/{}/{}".format(champ_name,lane)
 	champ_build_page_content = Scrap(champ_build_url).find("div",{"id":"mainContentContainer"})
 	champ_build_table = champ_build_page_content.findAll("div",{"class":"box box-padding-10"})[-3]
 

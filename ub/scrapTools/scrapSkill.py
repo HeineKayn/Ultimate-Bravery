@@ -1,7 +1,7 @@
 from .tools import * 
 
 def run(champ_name,bdd=None):
-	champ_skills_url = leagueOfGraphs_url + "/champions/skills-orders/{}".format(champ_name)
+	champ_skills_url = "https://www.leagueofgraphs.com/champions/skills-orders/{}".format(champ_name)
 
 	champ_skills_page_content = Scrap(champ_skills_url).find("div",{"id":"mainContent"})
 	champ_skills_table = champ_skills_page_content.findAll("div",{"class":"responsive-table skillsOrdersTableContainer"})

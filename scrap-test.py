@@ -70,5 +70,7 @@ def poulet(dinde,*args):
 
 # poulet(1,2,3,4,5)
 
-a = 2 if "1" == "1" else 0
-print(a)
+# a = 2 if "1" == "1" else 0
+# print(a)
+
+print(len("Summoner_UltBookSmitePlaceholder.png"))

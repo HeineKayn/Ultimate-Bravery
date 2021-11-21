@@ -1,8 +1,8 @@
-from tools import * 
+from .tools import * 
 
 def init(version,bdd=None):
 	spell_list_url = "http://ddragon.leagueoflegends.com/cdn/{}/data/en_US/summoner.json".format(version)
-	# base_img_url   = "https://ddragon.leagueoflegends.com/cdn/11.23.1/img/spell/".format(version)
+	# base_img_url   = "https://ddragon.leagueoflegends.com/cdn/{}/img/spell/".format(version)
 
 	spell_json = ScrapJson(spell_list_url)
 	spell_name_list = []
@@ -18,10 +18,10 @@ def init(version,bdd=None):
 		spell_name_list.append(spell_name)
 
 		if __name__ == "__main__" :
-			print(spell_name,spell_mode_classic,spell_mode_aram)
+			print(spell_name,spell_mode_classic,spell_mode_aram,spell_icon)
 
 		if bdd : 
-			bdd.set.addspell(spell_name,spell_icon,spell_mode_classic,spell_mode_aram)
+			bdd.set.addSpell(spell_name,spell_mode_classic,spell_mode_aram,spell_icon)
 
 	return spell_name_list
 

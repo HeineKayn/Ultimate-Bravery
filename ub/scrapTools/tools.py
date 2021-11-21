@@ -59,7 +59,7 @@ def complexItemResolver(itemName):
 		itemName = ""
 	return itemName
 
-def loadingBar(cur_task,max_task,task,subtask,cur_progress,max_progress):
+def loadingBar(cur_task,max_task,task,subtask="",cur_progress=0,max_progress=1):
 	percentage = round(cur_task/max_task * 100)
 	scaler     = 2 
 	space      = 20
@@ -77,11 +77,10 @@ def get_latest_version():
 	version_list = ScrapJson(url)
 	return version_list[0]
 
+def uggversion(version):
+	saison,patch,minipatch = version.split(".")
+	return "{}_{}".format(saison,patch)
+
 # ==================== Variables
 
 roles = ["top","jungle","middle","adc","support"]
-
-leagueOfGraphs_url = 'https://www.leagueofgraphs.com'
-leagueFandom_url   = 'https://leagueoflegends.fandom.com'
-
-championFile = "champions.txt"

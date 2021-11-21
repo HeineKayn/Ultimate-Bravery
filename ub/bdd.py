@@ -44,11 +44,19 @@ class BDD():
 if __name__ == "__main__" :
 	
 	bdd = BDD()
-	# x = bdd.get.numberOf("Champion")
-	# print(x)
 	
 	# bdd.manage.renewTables()
+	# bdd.manage.createTables()
 
-	bdd.cur.execute("SHOW TABLES")
+	# bdd.manage.destroyTable("Lane")
+	# bdd.manage.destroyTable("Champion")
+	# bdd.manage.destroyTable("Item")
+	# bdd.manage.destroyTable("Rune")
+
+	# bdd.cur.execute("SHOW TABLES")
+	bdd.cur.execute("SELECT nom FROM Spell Where classic=1")
 	for x in bdd.cur :
 		print(x)
+
+	# x = bdd.get.uggId("aatrox")
+	# print(x)

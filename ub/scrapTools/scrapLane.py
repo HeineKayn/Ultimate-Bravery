@@ -8,7 +8,7 @@ def init(bdd=None):
 	return lanes
 
 def run(champ_name,bdd=None):
-	champ_lane_url = leagueOfGraphs_url + "/fr/champions/stats/" + champ_name
+	champ_lane_url = "https://www.leagueofgraphs.com/fr/champions/stats/" + champ_name
 
 	champ_lane_page_content = Scrap(champ_lane_url).find("div",{"id":"mainContent"})
 	champ_lane_table = champ_lane_page_content.findAll("div",{"class":"medium-12 small-24 columns"})[1]

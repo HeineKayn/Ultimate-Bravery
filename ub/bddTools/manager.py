@@ -6,15 +6,10 @@ class Manage():
 
 		# ----- INFOS
 
-		self.cur.execute("""CREATE TABLE Item (
-								ID int PRIMARY KEY AUTO_INCREMENT, 
-								nom VARCHAR(30), 
-								type VARCHAR(30), 
-							UNIQUE(nom))""")
-
 		self.cur.execute("""CREATE TABLE Champion (
-								ID int PRIMARY KEY AUTO_INCREMENT, 
-								nom VARCHAR(30), 
+								ID int PRIMARY KEY, 
+								nom VARCHAR(30),
+								img VARCHAR(30),
 							UNIQUE(nom))""")
 
 		self.cur.execute("""CREATE TABLE Lane (
@@ -22,20 +17,29 @@ class Manage():
 								nom VARCHAR(30), 
 							UNIQUE(nom))""")
 
+		self.cur.execute("""CREATE TABLE Item (
+								ID int PRIMARY KEY AUTO_INCREMENT, 
+								nom VARCHAR(40), 
+								type VARCHAR(30),
+								img VARCHAR(130), 
+							UNIQUE(nom))""")
+
 		self.cur.execute("""CREATE TABLE Rune (
-								ID int PRIMARY KEY,
+								ID int PRIMARY KEY AUTO_INCREMENT,
+								riotID INT,
 								nom VARCHAR(30), 
 								arbre VARCHAR(30), 
 								ligne VARCHAR(30), 
 								type VARCHAR(30), 
-							UNIQUE(nom,arbre,ligne,type))""")
+							UNIQUE(nom,ligne,type))""")
 
 		self.cur.execute("""CREATE TABLE Spell (
 								ID int PRIMARY KEY AUTO_INCREMENT,
 								nom VARCHAR(30),
 								classic INT(1),
 								aram INT(1),
-								img VARCHAR(30)""")
+								img VARCHAR(45),
+							UNIQUE(nom))""")
 
 		# ----- INTERMEDIAIRES
 
@@ -92,6 +96,7 @@ class Manage():
 		self.destroyTable("Champion")
 		self.destroyTable("Item")
 		self.destroyTable("Rune")
+		self.destroyTable("Spell")
 
 	def renewTables(self):
 		self.destroyAllTable()
