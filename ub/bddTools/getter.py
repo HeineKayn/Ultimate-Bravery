@@ -29,7 +29,13 @@ class Get():
 		return res
 
 	def uggId(self,champ_name):
-		Q_getId = """SELECT ID from Champion
+		Q_getId = """SELECT ID FROM Champion
 					 WHERE nom = %s """
 		self.cur.execute(Q_getId,(champ_name,))
 		return self.cur.fetchone()[0]
+
+	def summs(self,carte):
+		self.cur.execute("SELECT nom,img FROM Spell WHERE {} = 1".format(carte))
+		res = self.cur.fetchall()
+		res = [{x[0]:x[1]} for x in res]
+		return res

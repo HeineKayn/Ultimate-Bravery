@@ -49,6 +49,10 @@ class Scrapper():
 				if task in ["Lane","Skill"] :
 					scrapFunc(champion,self.bdd)
 					break
+				# Rune aussi est un peu différent car on lui donne la version
+				elif task == "Rune" : 
+					scrapFunc(champion,self.uggversion,self.bdd)
+					break
 
 				# Build est différent car on doit lui passer un argument supplémentaire
 				else :
@@ -61,26 +65,20 @@ class Scrapper():
 
 			counter += 1
 			self.bdd.commit()
+		tools.loadingBar(counter,nbChampion,task,"Terminé",self.cur_progress, self.max_progress)
 
 	def updateAll(self):
-		self.max_progress = 2
+		self.max_progress = 4
 		self.updateX(scrapLane.run,"Lane")
 		self.cur_progress +=1 
 		self.updateX(scrapSkill.run,"Skill")
 		self.cur_progress +=1 
+		self.updateX(scrapBuild.run,"Build")
+		self.cur_progress +=1 
+		self.updateX(scrapRune.run,"Rune")
+		self.cur_progress +=1 
 		tools.loadingBar(100,100,"Terminé","",self.cur_progress,self.max_progress)
 
-		# updateBuild(bdd)
-		# scrapRune.run(bdd)
-
-	
-scrapper = Scrapper(BDD())
-scrapper.initInformations()
-
-# scrapper.updateX(scrapLane.run,"Lane")
-# scrapper.updateX(scrapSkill.run,"Skill")
-
-# scrapChampion.init(scrapper.version,scrapper.bdd)
-# scrapper.bdd.commit()
-
-# scrapper.updateAll()
+if __name__ == "__main__" :
+	scrapper = Scrapper(BDD())
+	scrapper.updateAll()

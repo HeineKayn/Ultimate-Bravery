@@ -25,8 +25,8 @@ def run(champ_name,lane,existing_items,bdd=None):
 
 			item_processed.append(name)
 			
-			# Seulement pour les tests
-			# print(name, pickrate, winrate)
+			if __name__ == "__main__" :
+				print(name, pickrate, winrate)
 
 			if bdd :
 				bdd.get.intermItem_Update(winrate,pickrate,champ_name,lane,name)

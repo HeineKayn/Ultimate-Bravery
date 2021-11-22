@@ -1,2 +1,2 @@
-import bdd 
-import scrap
+from . import scrap
+from . import bdd 

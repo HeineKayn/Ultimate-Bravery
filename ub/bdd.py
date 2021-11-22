@@ -53,8 +53,12 @@ if __name__ == "__main__" :
 	# bdd.manage.destroyTable("Item")
 	# bdd.manage.destroyTable("Rune")
 
+	x = bdd.get.summs("classic")
+	print(x)
+
 	# bdd.cur.execute("SHOW TABLES")
-	bdd.cur.execute("SELECT nom FROM Spell Where classic=1")
+	# bdd.cur.execute("SELECT * FROM Spell")
+
 	for x in bdd.cur :
 		print(x)
 

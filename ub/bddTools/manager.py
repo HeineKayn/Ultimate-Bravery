@@ -64,8 +64,8 @@ class Manage():
 
 		self.cur.execute("""CREATE TABLE Interm_Rune (
 								ID int PRIMARY KEY AUTO_INCREMENT, 
-								winrate float(4),
-								pickrate float(4), 
+								winrate float(4) DEFAULT 0.0,
+								pickrate float(4) DEFAULT 0.0, 
 								championID int, 
 								laneID int, 
 								runeID int, 
