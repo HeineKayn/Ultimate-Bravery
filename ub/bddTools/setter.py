@@ -26,7 +26,7 @@ class Set():
 
 	def addSpell(self,spell_name,spell_classic,spell_aram,spell_img):
 		Q_Champion = """INSERT INTO Spell (nom,classic,aram,img) VALUES (%s,%s,%s,%s) 
-						ON DUPLICATE KEY UPDATE nom=nom,classic=classic,aram=aram"""
+						ON DUPLICATE KEY UPDATE nom=nom,classic=classic,aram=aram, img=img"""
 		self.cur.execute(Q_Champion,(spell_name,spell_classic,spell_aram,spell_img))
 
 	##########  Update dans les tables d'intermédiaire

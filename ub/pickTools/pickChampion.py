@@ -3,7 +3,7 @@ import random
 # Renvoie un champion au hasard présent dans la DB, que la personne a et qui est pas problématique
 def run(champion_notowned,bdd):
 
-    bdd.cur.execute("SELECT nom,img FROM Champion")
+    bdd.cur.execute("SELECT nom FROM Champion")
 
     # Transforme en liste
     champion_list = bdd.cur.fetchall()
@@ -16,6 +16,6 @@ def run(champion_notowned,bdd):
     champion_list = [x for x in champion_list if x not in champion_banned]
 
     # Choisis au hasard parmi le reste
-    name, img = random.choice(champion_list)
+    name = random.choice(champion_list)
 
-    return {"name":name,"img":img}
+    return name

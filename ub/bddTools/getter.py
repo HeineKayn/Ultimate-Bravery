@@ -35,7 +35,7 @@ class Get():
 		return self.cur.fetchone()[0]
 
 	def summs(self,carte):
-		self.cur.execute("SELECT nom,img FROM Spell WHERE {} = 1".format(carte))
+		self.cur.execute("SELECT nom FROM Spell WHERE {} = 1".format(carte))
 		res = self.cur.fetchall()
-		res = [{x[0]:x[1]} for x in res]
+		res = [x[0] for x in res]
 		return res

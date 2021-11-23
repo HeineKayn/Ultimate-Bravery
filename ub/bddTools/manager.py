@@ -39,7 +39,7 @@ class Manage():
 								classic INT(1),
 								aram INT(1),
 								img VARCHAR(45),
-							UNIQUE(nom))""")
+							UNIQUE(nom,img))""")
 
 		# ----- INTERMEDIAIRES
 

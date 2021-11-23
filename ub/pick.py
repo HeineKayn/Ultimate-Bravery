@@ -31,8 +31,9 @@ picker = Picker(bdd)
 
 x = pickTitre.run()
 x = pickChampion.run([],bdd)
-x = pickLane.run(1,"classic","vi",bdd)
-x = pickSkill.run(1,"vi",bdd)
+x = pickSpell.run(5,"classic",bdd)
+# x = pickLane.run(1,"classic","vi",bdd)
+# x = pickSkill.run(1,"vi",bdd)
 
 
 print(x)
