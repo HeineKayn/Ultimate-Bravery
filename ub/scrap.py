@@ -81,4 +81,9 @@ class Scrapper():
 
 if __name__ == "__main__" :
 	scrapper = Scrapper(BDD())
-	# scrapper.updateAll()
+	scrapper.initInformations()
+	scrapper.updateAll()
+
+	# scrapRune.init(scrapper.version,scrapper.bdd)
+	# scrapper.updateX(scrapRune.run,"Rune")
+	# scrapper.bdd.commit()

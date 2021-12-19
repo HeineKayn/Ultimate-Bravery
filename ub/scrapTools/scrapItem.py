@@ -20,13 +20,12 @@ def init(bdd=None):
 			icon = icon.replace("scale-to-width-down/40?cb","scale-to-width-down/64?cb") # Pour que ça soit plus grand
 
 			name = complexItemResolver(name)
-			if name == "" :
-				break
+			if name != "" :
 
-			item_list.append(name)
+				item_list.append(name)
 
-			if bdd :
-				bdd.set.addItem(name,key,icon)
+				if bdd :
+					bdd.set.addItem(name,key,icon)
 
 	return item_list
 
@@ -34,3 +33,4 @@ if __name__ == "__main__" :
 	res = init()
 	# res.sort()
 	# print(res)
+	# print(len(res))

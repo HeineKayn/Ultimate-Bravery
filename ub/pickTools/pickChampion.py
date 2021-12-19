@@ -3,13 +3,11 @@ import random
 # Renvoie un champion au hasard présent dans la DB, que la personne a et qui est pas problématique
 def run(champion_notowned,bdd):
 
-    bdd.cur.execute("SELECT nom FROM Champion")
+    # chope la liste de champion
+    champion_list = bdd.get.champions()
 
-    # Transforme en liste
-    champion_list = bdd.cur.fetchall()
-
-    # champion_banned = ['shaco','shyvana','kogmaw']
     champion_banned = []
+    # champion_banned += ['shaco','shyvana','kogmaw']
     champion_banned += champion_notowned
 
     # Enlève certains champions
@@ -18,4 +16,8 @@ def run(champion_notowned,bdd):
     # Choisis au hasard parmi le reste
     name = random.choice(champion_list)
 
-    return name
+    # Chope l'id en fonction du nom
+    uggid = bdd.get.uggId(name)
+    icon = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{}.png".format(uggid)
+
+    return {"name" : name, "icon" : icon}

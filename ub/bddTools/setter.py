@@ -4,10 +4,10 @@ class Set():
 
 	##########  Ajout dans les tables d'infos 
 
-	def addChampion(self,ugg_id,champ_name,champ_img):
-		Q_Champion = """INSERT INTO Champion (ID,nom,img) VALUES (%s,%s,%s) 
+	def addChampion(self,ugg_id,champ_name):
+		Q_Champion = """INSERT INTO Champion (ID,nom) VALUES (%s,%s) 
 						ON DUPLICATE KEY UPDATE nom=nom"""
-		self.cur.execute(Q_Champion,(ugg_id,champ_name,champ_img))
+		self.cur.execute(Q_Champion,(ugg_id,champ_name))
 
 	def addLane(self,lane_name):
 		Q_Lane = """INSERT INTO Lane (nom) VALUES (%s)

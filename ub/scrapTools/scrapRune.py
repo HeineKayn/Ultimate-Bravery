@@ -3,8 +3,8 @@ from .tools import *
 def init(version,bdd=None):
 	url = "http://ddragon.leagueoflegends.com/cdn/{}/data/en_US/runesReforged.json".format(version)
 
-	# format -> tree, rune_name, rune_name.json (attention bdd rune name a des majs, ici c'est full minuscule)
-	# base_img_url  = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/{}/{}/{}.json"
+	# format -> tree, rune_name, rune_name (attention bdd rune name a des majs, ici c'est full minuscule)
+	# base_img_url  = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/{}/{}/{}.png"
 
 	rune_trees = ScrapJson(url)
 
@@ -18,7 +18,7 @@ def init(version,bdd=None):
 					rune_name = rune_dic["key"]
 					rune_name = rune_name.lower()
 
-					if rune_type == "primary" and rune_ligne == 0 :
+					if rune_type == "secondary" and rune_ligne == 0 :
 						break
 
 					if bdd :
@@ -42,7 +42,7 @@ def run(champ_name,version,bdd=None):
 		# Rang   : 1: Chall, 2: Master, 3:Diamant, 4:Plat, 5: gold, 6: silver, 7: bronze, 8: all ranks, 10: plat+, 11:dia+, 12: iron, 13:gm, 14:master+, 15:dia2+
 		# Role   : 1: jungle, 2: supp, 3: adc, 4: top, 5: mid
 
-	lane_corresp = {"1": "jungle", "2": "supp", "3": "adc", "4": "top", "5": "mid"}
+	lane_corresp = {"1": "jungle", "2": "support", "3": "adc", "4": "top", "5": "middle"}
 	lane_dic = rune_stats["12"]["8"]
 
 	for lane_id,rune_list in lane_dic.items():

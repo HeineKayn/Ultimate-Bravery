@@ -2,7 +2,6 @@ from .tools import *
 
 def init(version,bdd=None):
 	spell_list_url = "http://ddragon.leagueoflegends.com/cdn/{}/data/en_US/summoner.json".format(version)
-	# base_img_url   = "https://ddragon.leagueoflegends.com/cdn/{}/img/spell/".format(version)
 
 	spell_json = ScrapJson(spell_list_url)
 	spell_name_list = []

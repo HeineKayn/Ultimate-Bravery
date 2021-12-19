@@ -39,3 +39,8 @@ class Get():
 		res = self.cur.fetchall()
 		res = [x[0] for x in res]
 		return res
+
+	def summIcon(self,summoner_name):
+		Q_getIcon = "SELECT img FROM Spell WHERE nom = %s"
+		self.cur.execute(Q_getIcon,(summoner_name,))
+		return self.cur.fetchone()[0]

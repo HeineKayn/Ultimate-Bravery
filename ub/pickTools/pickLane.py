@@ -21,8 +21,24 @@ def run(difficulte, carte, champ_name, bdd):
     # Difficulté 3 -> lane hasard   
     elif difficulte == 3 :                   
         ordo = 'RAND ()'
-                                            
+
     Q_Lane = Q_Lane.format(ordo)                  
     bdd.cur.execute(Q_Lane,(champ_name,))
+    name = bdd.cur.fetchone()[0]
 
-    return bdd.cur.fetchone()[0]
+    # La correspondance est bizarre donc on fait tout à la main
+    if name == 'adc':
+        iconEnd = "position-bottom.svg"
+    elif name == 'jungle':
+        iconEnd = "position-jungle.svg"
+    elif name == 'middle':
+        iconEnd = "position-middle.svg"
+    elif name == 'support':
+        iconEnd = "position-utility.svg"
+    elif name == 'top':
+        iconEnd ="position-top.svg"
+    else :
+        iconEnd = "position-lane.svg"
+
+    icon = "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-champ-select/global/default/svg/" + iconEnd
+    return {"name" : name, "icon" : icon}

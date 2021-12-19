@@ -194,7 +194,7 @@ def Pick_Stuff(difficulte, carte, lane, champ, limite_extreme, limite_centre, re
 
     banned_item = ["Defaut"] # En aram certains items sont supprimés, par défaut on enlève rien
     if carte == "aram" :
-        banned_item = ["Voleur d'âmes de Mejai","Ange gardien"]
+        banned_item = ["'Voleur d'âmes de Mejai'","'Ange gardien'"]
 
     for c,item in enumerate(banned_item) :
         banned_item[c] = '"' + item + '"'

@@ -9,7 +9,6 @@ class Manage():
 		self.cur.execute("""CREATE TABLE Champion (
 								ID int PRIMARY KEY, 
 								nom VARCHAR(30),
-								img VARCHAR(30),
 							UNIQUE(nom))""")
 
 		self.cur.execute("""CREATE TABLE Lane (

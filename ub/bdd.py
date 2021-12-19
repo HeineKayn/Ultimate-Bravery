@@ -51,16 +51,8 @@ if __name__ == "__main__" :
 	# bdd.manage.destroyTable("Lane")
 	# bdd.manage.destroyTable("Champion")
 	# bdd.manage.destroyTable("Item")
+	# bdd.manage.destroyTable("Interm_Rune")
 	# bdd.manage.destroyTable("Rune")
 
-	# x = bdd.get.summs("classic")
-	# print(x)
-	
 	# bdd.cur.execute("SHOW TABLES")
-	bdd.cur.execute("SELECT * FROM Spell")
-
-	for x in bdd.cur :
-		print(x)
-
-	# x = bdd.get.uggId("aatrox")
-	# print(x)
+	bdd.cur.execute("SELECT nom,img FROM Item")

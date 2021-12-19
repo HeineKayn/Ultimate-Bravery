@@ -40,24 +40,26 @@ def Proem(txt):  # Renvoie le caractère le plus récurrent d'un string
 # 	return data
 
 def complexItemResolver(itemName):
-	itemName = itemName.capitalize()
-	if "Hydra" in itemName : # On fusionne les 2 hydres
+	itemName = itemName.lower()
+	if "hydra" in itemName : # On fusionne les 2 hydres
 		itemName = "Hydra"
-	if "Scythe" in itemName or "Bulwark" in itemName or "Pauldron" in itemName or "Shard" in itemName :
+	if "scythe" in itemName or "bulwark" in itemName or "pauldron" in itemName or "shard" in itemName :
 		itemName = "Support"
-	if "Dominik" in itemName or "Mortal" in itemName : 
+	if "dominik" in itemName or "mortal" in itemName : 
 		itemName = "Whisper"
-	if "Silvermere" in itemName or "Scimitar" in itemName : 
+	if "silvermere" in itemName or "scimitar" in itemName : 
 		itemName = "Quicksilver"
-	if "Sterak" in itemName or "Malmortius" in itemName:
+	if "sterak" in itemName or "malmortius" in itemName:
 		itemName = "Lifeline"
-	if "Infinity" in itemName or "Guinsoo" in itemName:
+	if "infinity" in itemName or "guinsoo" in itemName:
 		itemName = "Crit"
-	if "Muramana" in itemName or "Manamune" in itemName or "Seraph" in itemName or "Archangel" in itemName:
+	if "muramana" in itemName or "manamune" in itemName or "seraph" in itemName or "archangel" in itemName:
 		itemName = "Mana"
-	if "Hurricane" in itemName :
+	if "hurricane" in itemName :
 		itemName = ""
-	return itemName
+	if itemName == "boots" :
+		itemName = ""
+	return itemName.capitalize()
 
 def loadingBar(cur_task,max_task,task,subtask="",cur_progress=0,max_progress=1):
 	percentage = round(cur_task/max_task * 100)

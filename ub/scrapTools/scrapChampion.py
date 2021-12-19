@@ -12,16 +12,15 @@ def init(version,bdd=None):
 
 	for champion in champion_json["data"].values():
 		champ_name  = champion["id"].lower()
-		champ_icon  = champion["image"]["full"]
 		champ_uggId = champion["key"]
 
 		champ_name_list.append(champ_name)
 
 		if bdd : 
-			bdd.set.addChampion(champ_uggId,champ_name,champ_icon)
+			bdd.set.addChampion(champ_uggId,champ_name)
 
 		if __name__ == "__main__" :
-			print(champ_uggId,champ_name,champ_icon)
+			print(champ_uggId,champ_name)
 
 	return champ_name_list
 

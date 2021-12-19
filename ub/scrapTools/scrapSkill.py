@@ -8,7 +8,7 @@ def run(champ_name,bdd=None):
 	
 	# Certains champions peuvent augmenter un sort de plus lorsqu'ils arrivent à un certain stade
 	# Cela rajoute une table en plus sur la page, on l'enlève donc
-	champ_casse_couille = ["viktor","kaisa","khazix"]
+	champ_casse_couille = ["viktor","kaisa","khazix","viego"]
 	if champ_name in champ_casse_couille : 
 		champ_skills_table = champ_skills_table[1:]
 
