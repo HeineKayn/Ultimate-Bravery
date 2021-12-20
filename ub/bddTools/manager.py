@@ -30,6 +30,7 @@ class Manage():
 								arbre VARCHAR(30), 
 								ligne VARCHAR(30), 
 								type VARCHAR(30), 
+								img VARCHAR(100),
 							UNIQUE(nom,ligne,type))""")
 
 		self.cur.execute("""CREATE TABLE Spell (

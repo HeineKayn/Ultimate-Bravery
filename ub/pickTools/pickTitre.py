@@ -4,7 +4,7 @@ import json
 # Prends un titre au hasard d'un fichier texte
 def run(): 
 
-    with open("../ressources/titre.txt",'r', encoding="utf8", errors='ignore') as file : 
+    with open("./ressources/titre.txt",'r', encoding="utf8", errors='ignore') as file : 
         ub_titres = json.load(file)
 
     # 1 chance sur 2 de prendre un truc complet 

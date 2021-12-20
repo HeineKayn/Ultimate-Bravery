@@ -17,27 +17,9 @@ class RunePicker():
         self.pickSecondary()
         return self.runeDic
 
-    def getRuneIcon(self,tree,rune):
-
-        # Y'en a certains qui pètes les couilles
-        if rune == "aftershock":
-            rune = "veteranaftershock"
-
-        rune2 = rune
-        if rune == "lethaltempo":
-            rune2 = "lethaltempotemp"
-        if rune == "tasteofblood":
-            rune2 = "greenterror_tasteofblood"
-        if rune == "celerity":
-            rune2 = "celeritytemp"
-        if rune == "nimbuscloack":
-            rune2 = "6361"
-        if rune == "nullifyingorb":
-            rune2 = "pokeshield"
-
-        icon = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/{}/{}/{}.png"
-        icon = icon.format(tree.lower(),rune,rune2)
-        return icon
+    def getRuneIcon(self,rune_icon):
+        url = "https://ddragon.leagueoflegends.com/cdn/img/"
+        return url + rune_icon
 
     def difficultyTranslater(self):
 
@@ -56,7 +38,7 @@ class RunePicker():
     def pickKeystone(self):
 
         Q_Keystone = """
-                        SELECT nom,arbre
+                        SELECT nom,arbre,img
                         FROM Interm_Rune
                         INNER JOIN Rune
                         ON Rune.id = Interm_Rune.runeID 
@@ -73,12 +55,12 @@ class RunePicker():
         keystone = self.bdd.cur.fetchone()
         
         self.primary_tree = keystone[1]
-        self.runeDic["Keystone"] = {"name" : keystone[0], "icon" : self.getRuneIcon(self.primary_tree,keystone[0])} 
+        self.runeDic["Keystone"] = {"name" : keystone[0], "icon" : self.getRuneIcon(keystone[2])} 
 
     def pickPrimaire(self):
 
         Q_Primaire = """
-                    SELECT nom
+                    SELECT nom,img
                     FROM Interm_Rune
                     INNER JOIN Rune
                     ON Rune.id = Interm_Rune.runeID 
@@ -95,13 +77,13 @@ class RunePicker():
 
         for numero in ['1','2','3'] : 
             self.bdd.cur.execute(Q_Primaire,(self.primary_tree,numero,self.champ,self.lane,))
-            rune = self.bdd.cur.fetchone()[0]
-            self.runeDic["Primary"].append({"name" : rune, "icon" : self.getRuneIcon(self.primary_tree,rune)})
+            rune = self.bdd.cur.fetchone()
+            self.runeDic["Primary"].append({"name" : rune[0], "icon" : self.getRuneIcon(rune[1])})
 
     def pickSecondary(self):
 
         Q_Secondaire1 = """
-                    SELECT nom,arbre,ligne
+                    SELECT nom,arbre,ligne,img
                     FROM Interm_Rune
                     INNER JOIN Rune
                     ON Rune.id = Interm_Rune.runeID 
@@ -118,12 +100,12 @@ class RunePicker():
 
         # Première rune secondaire
         self.bdd.cur.execute(Q_Secondaire1,(self.primary_tree,self.champ,self.lane,))
-        rune, secondaryTree, ligne = self.bdd.cur.fetchone()
-        self.runeDic["Secondary"].append({"name" : rune, "icon" : self.getRuneIcon(secondaryTree,rune)})
+        rune, secondaryTree, ligne, rune_icon = self.bdd.cur.fetchone()
+        self.runeDic["Secondary"].append({"name" : rune, "icon" : self.getRuneIcon(rune_icon)})
 
         # Deuxieme rune secondaire
         Q_Secondaire2 = """
-                    SELECT nom
+                    SELECT nom,img
                     FROM Interm_Rune
                     INNER JOIN Rune
                     ON Rune.id = Interm_Rune.runeID 
@@ -138,5 +120,5 @@ class RunePicker():
         Q_Secondaire2 = Q_Secondaire2.format(self.ordo)
 
         self.bdd.cur.execute(Q_Secondaire2,(secondaryTree,ligne,self.champ,self.lane,))
-        rune = self.bdd.cur.fetchone()[0]
-        self.runeDic["Secondary"].append({"name" : rune, "icon" : self.getRuneIcon(secondaryTree,rune)})
+        rune = self.bdd.cur.fetchone()
+        self.runeDic["Secondary"].append({"name" : rune[0], "icon" : self.getRuneIcon(rune[1])})

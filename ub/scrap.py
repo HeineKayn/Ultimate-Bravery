@@ -1,5 +1,5 @@
-from scrapTools import * 
-from bdd import BDD
+from .scrapTools import * 
+from .bdd import BDD
 
 class Scrapper():
 
@@ -75,13 +75,13 @@ class Scrapper():
 		self.cur_progress +=1 
 		self.updateX(scrapBuild.run,"Build")
 		self.cur_progress +=1 
-		self.updateX(scrapRune.run,"Rune")
-		self.cur_progress +=1 
+		# self.updateX(scrapRune.run,"Rune")
+		# self.cur_progress +=1 
 		tools.loadingBar(100,100,"Terminé","",self.cur_progress,self.max_progress)
 
 if __name__ == "__main__" :
 	scrapper = Scrapper(BDD())
-	scrapper.initInformations()
+	# scrapper.initInformations()
 	scrapper.updateAll()
 
 	# scrapRune.init(scrapper.version,scrapper.bdd)

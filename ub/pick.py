@@ -1,16 +1,16 @@
-from pickTools import * 
-from bdd import BDD
+from .pickTools import * 
+from .bdd import BDD
 
 class Picker():
 
-	def __init__(self,bdd=None):
+	def __init__(self,bdd):
 		self.bdd = bdd
 
-	def run(self,difficulte,carte,champ_allowed):
+	def run(self,difficulte,carte,champion_notowned):
 	    dic = {}
 	    dic["titre"] = pickTitre.run()
 
-	    dic["champion"] = pickChampion.run([],self.bdd)
+	    dic["champion"] = pickChampion.run(champion_notowned,self.bdd)
 	    champ_name      = dic["champion"]["name"]
 
 	    dic["lane"] = pickLane.run(difficulte,carte,champ_name,self.bdd)

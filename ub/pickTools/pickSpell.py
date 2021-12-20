@@ -10,7 +10,10 @@ def run(difficulte, carte, bdd):
     # Pour être sûr qu'on mets pas 2x le même summoner dans la liste
     def Summ_Add(summ_list):
         if len(summ_choice) < 2 : 
-            summ_list = [x for x in summ_list if x not in summ_choice]
+
+            # Evite de prendre 2x le même
+            summ_taken = [x["name"] for x in summ_choice]
+            summ_list  = [x for x in summ_list if x not in summ_taken]
             summoner_name = random.choice(summ_list)
 
             summoner_dic  = {"name" : summoner_name, "icon" : urlIcon(summoner_name)}
@@ -25,6 +28,7 @@ def run(difficulte, carte, bdd):
     # 100% flash + autre hasard
     if difficulte == 1 :    
         summoner_dic  = {"name" : "Flash", "icon" : urlIcon("Flash")}
+        summ_list.remove("Flash")
         summ_choice.append(summoner_dic)
 
     # 50% flash + autre hasard

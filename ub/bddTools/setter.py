@@ -19,10 +19,10 @@ class Set():
 					ON DUPLICATE KEY UPDATE nom=nom"""
 		self.cur.execute(Q_Item,(item_name,item_type,item_img))
 
-	def addRune(self,rune_id,rune_name,rune_arbre,rune_ligne,rune_type):
-		Q_Rune = """INSERT INTO Rune (riotID,nom,arbre,ligne,type) VALUES (%s,%s,%s,%s,%s)
+	def addRune(self,rune_id,rune_name,rune_arbre,rune_ligne,rune_type,rune_img):
+		Q_Rune = """INSERT INTO Rune (riotID,nom,arbre,ligne,type,img) VALUES (%s,%s,%s,%s,%s,%s)
 					ON DUPLICATE KEY UPDATE nom=nom"""
-		self.cur.execute(Q_Rune,(rune_id,rune_name,rune_arbre,rune_ligne,rune_type))	
+		self.cur.execute(Q_Rune,(rune_id,rune_name,rune_arbre,rune_ligne,rune_type,rune_img))	
 
 	def addSpell(self,spell_name,spell_classic,spell_aram,spell_img):
 		Q_Champion = """INSERT INTO Spell (nom,classic,aram,img) VALUES (%s,%s,%s,%s) 

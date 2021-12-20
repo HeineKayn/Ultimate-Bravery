@@ -15,6 +15,7 @@ def init(version,bdd=None):
 			for rune_ligne,slot in enumerate(tree["slots"]):
 				for rune_dic in slot["runes"]:
 					rune_id  = rune_dic["id"]
+					rune_icon = rune_dic["icon"]
 					rune_name = rune_dic["key"]
 					rune_name = rune_name.lower()
 
@@ -22,10 +23,10 @@ def init(version,bdd=None):
 						break
 
 					if bdd :
-						bdd.set.addRune(rune_id,rune_name,rune_tree,rune_ligne,rune_type)
+						bdd.set.addRune(rune_id,rune_name,rune_tree,rune_ligne,rune_type, rune_icon)
 
 					if __name__ == "__main__" :
-						print(rune_tree, rune_type, rune_ligne, rune_id, rune_name)
+						print(rune_tree, rune_type, rune_ligne, rune_id, rune_name, rune_icon)
 
 def run(champ_name,version,bdd=None):
 

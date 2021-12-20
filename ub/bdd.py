@@ -1,4 +1,4 @@
-from bddTools import *
+from .bddTools import *
 
 from dotenv import load_dotenv
 import os 
@@ -54,5 +54,7 @@ if __name__ == "__main__" :
 	# bdd.manage.destroyTable("Interm_Rune")
 	# bdd.manage.destroyTable("Rune")
 
-	# bdd.cur.execute("SHOW TABLES")
-	bdd.cur.execute("SELECT nom,img FROM Item")
+	bdd.cur.execute("SHOW TABLES")
+	bdd.cur.execute("SELECT * FROM Item WHERE nom LIKE '%Mejai%'")
+	for x in bdd.cur :
+		print(x)

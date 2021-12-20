@@ -94,7 +94,7 @@ class BuildPicker():
         # En aram certains items sont supprimés
         banned_item = ["'Defaut'"] # Par défaut on enleve rien
         if self.carte == "aram" :
-            banned_item = ["'Voleur d'âmes de Mejai'","'Ange gardien'"]
+            banned_item = ["\"Guardian angel\"","\"Mejai's soulstealer\""]
         banned_item = ",".join(banned_item)
 
         # On récupére la liste d'item
