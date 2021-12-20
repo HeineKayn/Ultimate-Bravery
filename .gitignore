@@ -1,5 +1,5 @@
 
 data/.env
 test
-ressources/tempImage.png
-ressources/tempImage.svg
+*.png
+*.svg
