@@ -8,21 +8,15 @@
     <li><a href="#packages">Packages</a></li>
     <li><a href="#database-structure">Database Structure</a></li>
     <li><a href="#difficulties">Difficulties</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![product-screenshot](https://cdn.discordapp.com/attachments/663392854273556493/747591947098521721/ub.png)
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/734811866152304680/922533390748614696/classic_d4_5.png" />
+</p>
 
 This project use web scrapping to retrive game data on diverse website. 
 With those data we're able to generate builds for League of Legends champions according to an inputted difficulty parameter. 
@@ -35,11 +29,13 @@ The difficulty of a build is defined by the winrate of every component (items, s
 ## Packages
 
 ### Scrapper
-wip
-### Getter
-wip
+Module indépendant avec lequel on peut recupérer les informations. On peut le lancer à part et commenter les scrapper dont on a pas besoin. Il y'a aussi un système de barre de chargement pour améliorer le visuel. Un scrapping complet prend environ 1h.
+### BDD
+Relié à la base de donnée, on peut utiliser des fonctions dans Set et Get pour faciliter l'écriture des requetes usuelles. On peut de plus, grâce à Manage, recréer les tables au besoin.
+### Picker
+Récupére les éléments de la base de donnée et renvoie un dictionnaire contenant toutes les informations nécessaires (textuelles + images).
 ### Displayer
-wip
+Permet de transformer un dictionnaire en une image affichant les informations. C'est le seul module que je n'ai pas refait entièrement et il est donc très brouillon.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -47,13 +43,20 @@ wip
 ## Database Structure
 
 ### Stock informations about existing objects
-* Champion `Id, nom`
-* Lane `Id, nom`
-* Item `Id, nom`
-* Botte `Id, nom`
-* Keystone `Id, nom, genre, ligne, type`
-    * `genre` : Precision, Domination, etc...
+* Champion `ID, nom`
+    *  `ID` : Correspond à l'id que Riot assigne aux champion en fonction de leur date de sortie
+* Lane `ID, nom`
+* Item `ID, nom, type, img`
+    * `img` : Moitié d'un url amenant vers static.wikia.nocookie.net (j'ai choisi ce lien parce qu'ils DDragon n'indique pas si un item est Mythique, Légendaire ou bien des Bottes)
+* Rune `ID, riotID, nom, arbre, ligne, type, img`
+    * `riotID`: Comme pour les champions, les runes ont un id unique assigné par riot
+    * `arbre` : Precision, Domination, etc...
+    * `ligne` : Sert à différencier les runes utilisés comme primaires où secondaires
     * `type`  : Keystone, Primary, Secondary
+    * `img`   : Moitié d'un url menant vers ddragon.leagueoflegends.com (la correspondance est bizarre donc il fallait stocker l'adresse)
+* Spell `ID, nom, classic, aram, img`
+    * `classic` et `aram` : Booléens indiquant si on peut utiliser ce summoner sur les maps correspondantes
+    * `img` : Moitié d'un url menant vers ddragon.leagueoflegends.com (la correspondance est bizarre donc il fallait stocker l'adresse)
     
 ### Gathered stats 
 * SkillOrder `Id, ordre, championID`  (the one supposed to be the best for the given champion)
