@@ -8,14 +8,6 @@
     <li><a href="#packages">Packages</a></li>
     <li><a href="#database-structure">Database Structure</a></li>
     <li><a href="#difficulties">Difficulties</a></li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    
   </ol>
 </details>
 
