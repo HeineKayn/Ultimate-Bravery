@@ -1,0 +1,79 @@
+/* GENERAL*/
+
+@font-face {
+ 	font-family: Beaufort;
+ 	src: url("../fonts/Beaufort.ttf");     
+}
+
+* {
+	font-family : Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+html{
+	height: 100%;
+	width : 100%;
+    margin: 0;
+}
+
+body{
+	background-color: #36393f;
+	margin: 0; 
+	height: 100%; 
+	overflow: hidden;
+	color: #c0c0c0;
+}
+
+#ultimate_bravery{
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#champion_selector{
+	margin : 2%;
+	overflow: scroll;
+  height: 200px;
+  overflow-x: hidden;
+}
+
+.champion_container{
+	margin : 2px;
+	float: left;
+	opacity: 0.25;
+}
+
+.champion_active{
+	opacity: 1;
+}
+
+.champion_container > img {
+	height: 50px;
+}
+
+#parametre_container {
+	display: flex;
+  align-items: center;
+}
+
+#map_active{
+	background-color: gray;
+}
+
+/* SCROLL BAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2e3338; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #202225; 
+  border-radius: 10px;
+}

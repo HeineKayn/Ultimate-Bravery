@@ -44,3 +44,9 @@ class Get():
 		Q_getIcon = "SELECT img FROM Spell WHERE nom = %s"
 		self.cur.execute(Q_getIcon,(summoner_name,))
 		return self.cur.fetchone()[0]
+
+	def championsFull(self):
+		champion_list = self.champions()
+		url = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/{}.png"
+		dic = [{"name":champion,"icon":url.format(self.uggId(champion))} for champion in champion_list]
+		return dic
