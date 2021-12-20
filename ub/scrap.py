@@ -1,5 +1,5 @@
-from .scrapTools import * 
-from .bdd import BDD
+from scrapTools import * 
+from bdd import BDD
 
 class Scrapper():
 
@@ -81,7 +81,7 @@ class Scrapper():
 
 if __name__ == "__main__" :
 	scrapper = Scrapper(BDD())
-	# scrapper.initInformations()
+	scrapper.initInformations()
 	scrapper.updateAll()
 
 	# scrapRune.init(scrapper.version,scrapper.bdd)

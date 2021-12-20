@@ -24,7 +24,7 @@ def AddBord(img,x,y):
 	s = img.size[0] + t - 1
 	AddRectangle(x-t,y-t,x+s,y+s,color)
 
-def AddImg(url,x,y,bord=False,size=None):
+def AddImg(url,x,y,bord=False,size=None,alpha=False):
 
 	out = path = "./ressources/tempImage.png"
 	if ".svg" in url :
@@ -45,18 +45,19 @@ def AddImg(url,x,y,bord=False,size=None):
 		img = img.resize(size)
 
 	# ENLEVER LE BLANC
-	orig_color = (255,255,255,0)
-	replacement_color = (255,0,0,0)	
-	img = img.convert('RGBA')
-	datas = img.getdata()
+	if alpha :
+		orig_color = (255,255,255,0)
+		replacement_color = (255,0,0,0)	
+		img = img.convert('RGBA')
+		datas = img.getdata()
 
-	newData = []
-	for item in datas:
-	    if item[0] == 255 and item[1] == 255 and item[2] == 255:
-	        newData.append((255, 255, 255, 0))
-	    else:
-	        newData.append(item)
-	img.putdata(newData)
+		newData = []
+		for item in datas:
+		    if item[0] == 255 and item[1] == 255 and item[2] == 255:
+		        newData.append((255, 255, 255, 0))
+		    else:
+		        newData.append(item)
+		img.putdata(newData)
 
 	if bord:
 		AddBord(img,x,y);
@@ -98,7 +99,7 @@ class Displayer():
 			 x += 80
 		AddImg(dic["ordre"]["icon"],x,y)
 		x += 80
-		AddImg(dic["lane"]["icon"],x,y,size=(64,64))
+		AddImg(dic["lane"]["icon"],x,y,size=(64,64),alpha=True)
 		x = margin
 		y += 90
 		for item in dic["item"]:
@@ -112,12 +113,12 @@ class Displayer():
 		runes = dic["rune"]
 		primaire = [runes["Keystone"]] + runes["Primary"]
 		for rune in primaire:
-			AddImg(rune["icon"],x,y,size=(64,64))
+			AddImg(rune["icon"],x,y,size=(64,64),alpha=True)
 			y += 80
 		x += 80
 		y = margin
 		for rune in runes["Secondary"]:
-			AddImg(rune["icon"],x,y,size=(64,64))
+			AddImg(rune["icon"],x,y,size=(64,64),alpha=True)
 			y += 80
 		x += 15
 		y += 5
