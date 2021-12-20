@@ -22,7 +22,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![product-screenshot](https://cdn.discordapp.com/attachments/734811866152304680/922533390748614696/classic_d4_5.png)
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/734811866152304680/922533390748614696/classic_d4_5.png" />
+</p>
 
 This project use web scrapping to retrive game data on diverse website. 
 With those data we're able to generate builds for League of Legends champions according to an inputted difficulty parameter. 
