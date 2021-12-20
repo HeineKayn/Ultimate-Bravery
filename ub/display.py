@@ -6,6 +6,7 @@ import requests
 from PIL import Image,ImageFont,ImageDraw
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+import numpy as np
 
 color = (170,170,170)
 
@@ -42,6 +43,20 @@ def AddImg(url,x,y,bord=False,size=None):
 	img = Image.open(path) 
 	if size :
 		img = img.resize(size)
+
+	# ENLEVER LE BLANC
+	orig_color = (255,255,255,0)
+	replacement_color = (255,0,0,0)	
+	img = img.convert('RGBA')
+	datas = img.getdata()
+
+	newData = []
+	for item in datas:
+	    if item[0] == 255 and item[1] == 255 and item[2] == 255:
+	        newData.append((255, 255, 255, 0))
+	    else:
+	        newData.append(item)
+	img.putdata(newData)
 
 	if bord:
 		AddBord(img,x,y);
