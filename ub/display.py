@@ -1,4 +1,4 @@
-from .bdd import BDD
+from .bdd  import BDD
 from .pick import Picker
 
 import shutil
@@ -128,6 +128,9 @@ class Displayer():
 
 if __name__ == "__main__" :
 	bdd  = BDD()
+	pick = Picker(bdd)
 	disp = Displayer(bdd)
-	res = disp.run(3,"aram",[])
+
+	dic = pick.run(0,"classic",[])
+	res = disp.run(dic)
 	res.show()
