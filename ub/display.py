@@ -99,7 +99,8 @@ class Displayer():
 			 x += 80
 		AddImg(dic["ordre"]["icon"],x,y)
 		x += 80
-		AddImg(dic["lane"]["icon"],x,y,size=(64,64),alpha=True)
+		if carte != "aram" :
+			AddImg(dic["lane"]["icon"],x,y,size=(64,64),alpha=True)
 		x = margin
 		y += 90
 		for item in dic["item"]:

@@ -1,7 +1,9 @@
+from typing import AsyncIterable
 from ub import *
 
 bdd  = bdd.BDD()
 disp = display.Displayer(bdd)
+pick = pick.Picker(bdd)
 
 # for carte in ["classic","aram"]:
 # 	for i in range(1,6):

@@ -13,6 +13,10 @@ def run(champion_notowned,bdd):
     # Enlève certains champions
     champion_list = [x for x in champion_list if x not in champion_banned]
 
+    # Si on a enlevé tous les champions alors on dit que c'était une erreur et on les remets tous
+    if len(champion_list) < 1 :
+        champion_list = bdd.get.champions()
+
     # Choisis au hasard parmi le reste
     name = random.choice(champion_list)
 

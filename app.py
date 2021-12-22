@@ -1,10 +1,8 @@
-from quart import Quart, render_template, redirect, url_for
-from discord.ext.ipc import Client
-from datetime import datetime 
+from quart import Quart, render_template, jsonify, redirect, url_for
 
 import os
+import datetime
 import json
-import random
 
 # ---------------
 
@@ -34,7 +32,11 @@ from ub import *
 # ---------------
 
 bdd  = bdd.BDD()
-disp = display.Displayer(bdd)
+display = display.Displayer(bdd)
+pick = pick.Picker(bdd)
+
+logPath = "./static/txt/logs.txt"
+ubImgPath = "./static/image/ubResult"
 
 @app.route("/")
 @app.route("/ub")
@@ -42,11 +44,58 @@ async def ultimateBravery():
 	champions = bdd.get.championsFull()
 	return await render_template('ultimateBravery.html', champions=champions)
 
-@app.route("/")
-async def logs():
-	log_list = ["a","b"]
-	return await render_template('logs.html',logs = log_list)
+@app.route("/start_bravery", methods=['POST'])
+async def startBravery():
+	dic = await request.form
+	champions  = dic.getlist("champions[]")
+	map        = dic["map"]
+	difficulte = int(dic["difficulte"])
 
+	date = datetime.datetime.now()
+
+	# On fait l'image et on l'enregistre avec un tag unique
+	datetag    = date.strftime("%m%d%H%f")
+	path       = ubImgPath + "/d{}_{}_{}.png".format(difficulte,map,datetag)
+	img        = display.run(difficulte,map,champions)
+	img.save(path)
+
+	# On écrit dans les logs
+
+	with open(logPath, "r") as f:
+		logs = json.load(f)
+	
+	with open(logPath, 'w') as f:
+		dateString = date.strftime("Le %d/%m/%Y a %H:%M:%S")
+		ip = dic["ip"]
+		logs.append({"date" : dateString, "ip" : ip, "path" : path})
+		json.dump(logs, f)
+
+	return path
+
+#------ LOGS
+
+@app.route("/update_logs", methods=['POST'])
+async def updateLogs():
+	with open(logPath, "r") as f:
+		logs = json.load(f)
+	return jsonify(await render_template("logs_model.html",logs=logs))
+
+@app.route("/reset_log", methods=['POST'])
+async def resetLogs():
+
+	# Efface dans logs.txt
+	with open(logPath, 'w') as f:
+		json.dump([], f)
+	# Efface les images sauvegardés
+	for f in os.listdir(ubImgPath):
+		os.remove(os.path.join(ubImgPath, f))
+	return ""
+
+@app.route("/logs")
+async def logs():
+	with open(logPath, "r") as f:
+		logs = json.load(f)
+	return await render_template('logs.html',logs=logs)
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host="localhost", port=8000, debug=True)

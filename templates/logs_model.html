@@ -1,0 +1,12 @@
+<div id="logs">
+    {% for log in logs %}
+        <div>
+            <span class="log_date">{{ log.date }}</span>
+            <span class="log_ip">{{ log.ip }}</span>
+            <a class="log_path" href="{{ log.path }}">
+                <span>{{ log.path }}</span>
+                <img src="{{ log.path }}">
+            </a>
+        </div>
+    {% endfor %}
+</div>

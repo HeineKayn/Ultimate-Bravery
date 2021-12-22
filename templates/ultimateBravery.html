@@ -1,20 +1,32 @@
-{% extends "base.html" %}
+{% extends "ultimateBase.html" %}
 
 {% block content %}
 
+	<script type="application/javascript">
+		function getIP(json) {
+			ip = json.ip;
+		}
+	</script>
+
 	<script type="text/javascript" src="../static/js/bravery.js"></script>
+	<script src="http://api.ipify.org?format=jsonp&callback=getIP"></script>
+	
 
 	<div id="ultimate_bravery">
 
-		<div>
+		<h1>Ultimate Bravery (Revisité)</h1>
+
+		<div id="filtre_button">
+			<input type="text" id="championFilter" onkeyup="filterChampion()" placeholder="Filtre les champions...">
 			<button class="champion_button" id="allButton">Select All</button>
 			<button class="champion_button" id="noneButton">Select None</button>
 		</div>
 
 		<div id="champion_selector"> 
+
 			{% for champion in champions %}
-				<div class="champion_container champion_active">
-					<img src="{{ champion.icon }}" id="{{ champion.name }}"></img>
+				<div class="champion_container">
+					<img src="{{ champion.icon }}" id="{{ champion.name }}" draggable="false"></img>
 				</div>
 			{% endfor %}
 		</div>
@@ -22,24 +34,27 @@
 		<div id="parametre_container">
 
 			<div>
-				<button class="map_button" id="map_active" value="classic">Classique</button>
-				<button class="map_button" value="aram">ARAM</button>
+				<button class="map_button" value="classic">Classique</button>
+				<button class="map_button" value="aram" id="map_active">ARAM</button>
 			</div>
 
 			<div id="difficulte_container">
 				<div id="difficulte_indicator">
-					<span>Difficulte : </span>
-					<span id="difficulte_number">3</span>
+					<span>Difficulté : </span>
+					<span id="difficulte_number" style="color:yellow">Difficile</span>
 				</div>
 				<input type="range" min="1" max="5" value="3" class="slider" id="difficulte_slider">
 			</div>
 
 		</div>
 
-		<button>GO</button>
+		<button id="start_bravery">GO</button>
+
+		<div id="ub_result_container">
+
+		</div>
 
 		<!-- Barre filtre pour choisir les champions : a chaque fois qu'on écrit ça va dans le js et ça rend invisible tous les élements qui vontiennent pas texte -->
-		<!-- Tout selec/deselec champion -->
 		<!-- Resultat image cash -->
 
 	</div>
